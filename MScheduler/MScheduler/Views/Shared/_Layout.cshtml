@@ -1,30 +1,33 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>@ViewBag.Title - MScheduler</title>
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <meta name="viewport" content="width=device-width" />
-        @Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
-    </head>
-    <body>
-     
-        <div id="body">
-            @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-        </div>
-        <footer>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - MScheduler</p>
-                </div>
-            </div>
-        </footer>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
 
-        @Scripts.Render("~/bundles/jquery")
-        @RenderSection("scripts", required: false)
-    </body>
+    @*Set the viewport width to device width for mobile *@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>@ViewBag.Title - Welcome to Foundation</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    @Styles.Render("~/Content/foundation/css")
+    @Scripts.Render("~/Content/site")
+
+    @RenderSection("head", required: false)
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/foundation")
+
+
+
+
+    <script>
+        $(document).foundation();
+    </script>
+    @*Use the Scripts section to define page specific scripts*@
+    @RenderSection("scripts", required: false)
+</body>
 </html>
