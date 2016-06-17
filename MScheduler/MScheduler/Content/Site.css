@@ -6,8 +6,6 @@
 
 body {
     background-color: #fff;
-    border-top: solid 10px #000;
-    color: #333;
     font-size: .85em;
     font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
     margin: 0;
@@ -105,14 +103,11 @@ h5, h6 {
 }
 
     .main-content {
-        background: url("../Images/accent.png") no-repeat;
         padding-left: 10px;
         padding-top: 30px;
     }
 
-    .featured + .main-content {
-        background: url("../Images/heroAccent.png") no-repeat;
-    }
+  
 
 header .content-wrapper {
     padding-top: 20px; 
