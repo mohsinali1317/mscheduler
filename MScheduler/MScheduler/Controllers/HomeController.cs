@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -21,13 +22,13 @@ namespace MScheduler.Controllers
 
 
             // Creates an HtmlDocument object from an URL
-            var html = new HtmlDocument();
-
-            Uri u = new Uri("http://cricketforbundet.no/index.php/en/klubber");
-
-            html.LoadHtml(new WebClient().DownloadString(u));
+            
+            WebClient webClient = new WebClient();
+            HtmlDocument html = new HtmlDocument();
+            html.Load(webClient.OpenRead("http://cricketforbundet.no/index.php/en/klubber"), Encoding.UTF8);
 
             var root = html.DocumentNode;
+
             var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1);
 
             foreach (var item in p)

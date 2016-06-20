@@ -9,7 +9,7 @@ namespace MScheduler
             return new StyleBundle("~/Content/foundation/css").Include(
                        "~/Content/foundation/foundation.css",
                        "~/Content/foundation/foundation.mvc.css",
-                       "~/Content/Site.scss", // todo: take it from here
+                       "~/Content/Site.css", // todo: take it from here
                        "~/Content/foundation/app.css");
         }
 
