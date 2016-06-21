@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<div class="row">
+    <div class="main">
+        @foreach (var team in ViewBag.teams)
+        {
+            <div class="teams">
+                @foreach (var item in team)
+                {
+                    <h3>@item</h3>
+                }
+            </div>
+
+        }
+    </div>
+</div>
