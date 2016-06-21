@@ -20,6 +20,11 @@ namespace MScheduler.Helpers
            new DateTime(2016,7,4)
         };
 
+        public static List<TimeSpan> allowedTimes = new List<TimeSpan>{
+           new TimeSpan(9,15,0),
+           new TimeSpan(3,15,0)
+        };
+
         public static DateTime startDate = new DateTime(2016,7,1);
 
         public static DateTime endDate = new DateTime(2016, 7, 31);
