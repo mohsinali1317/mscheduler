@@ -1,19 +1,32 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using MScheduler.Models;
+@{
+    ViewBag.Title = "Matches";
 }
 
-
-<div class="row">
-    <div class="main">
-        @foreach (var team in ViewBag.teams)
+<table class="matches">
+    <thead>
+        <tr>
+            <th>Division</th>
+            <th>First Team</th>
+            <th>Second Team</th>
+            <th>Ground</th>
+            <th>Day</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Match m in ViewBag.matches)
         {
-            <div class="teams">
-                @foreach (var item in team)
-                {
-                    <h3>@item</h3>
-                }
-            </div>
-
+            <tr>
+                <td>@m.division</td>
+                <td>@m.firstTeam</td>
+                <td>@m.secondTeam</td>
+                <td>@m.ground</td>
+                <td>@m.day</td>
+                <td>@m.date.ToShortDateString()</td>
+                <td>@m.time</td>
+            </tr>
         }
-    </div>
-</div>
+    </tbody>
+</table>

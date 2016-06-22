@@ -78,3 +78,6 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\zh-Hans\System.Spatial.resources.
 C:\Source\mscheduler\MScheduler\MScheduler\bin\zh-Hant\System.Spatial.resources.dll
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Debug\MScheduler.dll
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Debug\MScheduler.pdb
+C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.dll
+C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.pdb
+C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.xml

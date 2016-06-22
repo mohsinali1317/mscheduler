@@ -1,11 +1,7 @@
-C:\Source\mscheduler\MScheduler\MScheduler\bin\LibSassHost.Native\LibSassHost.Native-32.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\LibSassHost.Native\LibSassHost.Native-64.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\MScheduler.dll.config
 C:\Source\mscheduler\MScheduler\MScheduler\bin\MScheduler.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\MScheduler.pdb
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Antlr3.Runtime.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\BundleTransformer.Core.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\BundleTransformer.SassAndScss.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\DotNetOpenAuth.AspNet.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\DotNetOpenAuth.Core.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\DotNetOpenAuth.OAuth.Consumer.dll
@@ -14,7 +10,6 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\DotNetOpenAuth.OpenId.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\EntityFramework.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\LibSassHost.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Microsoft.Data.Edm.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Microsoft.Data.OData.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Microsoft.Web.Infrastructure.dll
@@ -33,11 +28,9 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.WebPages.Razor.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\WebGrease.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\WebMatrix.Data.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\WebMatrix.WebData.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\Antlr3.Runtime.pdb
 C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.pdb
 C:\Source\mscheduler\MScheduler\MScheduler\bin\HtmlAgilityPack.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Newtonsoft.Json.xml
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Optimization.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\EntityFramework.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Helpers.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Mvc.xml
@@ -58,7 +51,6 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.OData.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Microsoft.Data.Edm.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\Microsoft.Data.OData.xml
 C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Spatial.xml
-C:\Source\mscheduler\MScheduler\MScheduler\bin\ru-ru\BundleTransformer.Core.resources.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\de\Microsoft.Data.Edm.resources.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\es\Microsoft.Data.Edm.resources.dll
 C:\Source\mscheduler\MScheduler\MScheduler\bin\fr\Microsoft.Data.Edm.resources.dll
@@ -89,9 +81,3 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\zh-Hant\System.Spatial.resources.
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.csprojResolveAssemblyReference.cache
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.dll
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.pdb
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Net.Http.Formatting.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.WebHost.dll
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Net.Http.Formatting.xml
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.xml
-C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.WebHost.xml

@@ -32,6 +32,7 @@ namespace MScheduler.Helpers
 
         public static int matchesPerTeamOnWeekend = -1; // if -1 then we don't care about this
 
+
         public static string ToTitleCase(string str)
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());

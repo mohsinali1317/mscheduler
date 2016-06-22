@@ -1,8 +1,11 @@
-﻿using MScheduler.Helpers;
+﻿using HtmlAgilityPack;
+using MScheduler.Helpers;
 using MScheduler.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,22 +13,12 @@ namespace MScheduler.Controllers
 {
     public class HomeController : Controller
     {
+        public List<string> elite = new List<string>();
+
+        public List<string> first = new List<string>();
+
         public ActionResult Index()
         {
-            List<string> elite = new List<string>
-            {
-                "star",
-                "sentrum",
-                "oslo"
-            };
-
-            List<string> first = new List<string>
-            {
-                "falken",
-                "united",
-                "city"
-            };
-
 
             List<Match> matches = new List<Match>();
 
@@ -42,8 +35,6 @@ namespace MScheduler.Controllers
             Random rand = new Random();
             Match m;
 
-
-
             while (count < totalNumberOfMatches)
             {
                 int random = rand.Next(0, 2);
@@ -54,7 +45,6 @@ namespace MScheduler.Controllers
                 var randomTest = new Random();
                 TimeSpan newSpan = new TimeSpan(0, randomTest.Next(0, (int)timeSpan.TotalMinutes), 0);
                 DateTime newDate = Constants.startDate + newSpan;
-
 
                 TimeSpan time = Constants.allowedTimes.ElementAt(random);
 
@@ -161,6 +151,27 @@ namespace MScheduler.Controllers
                 division = Constants.ToTitleCase(division)
             };
 
+        }
+
+        public ActionResult Setup()
+        {
+            WebClient webClient = new WebClient();
+            HtmlDocument html = new HtmlDocument();
+            html.Load(webClient.OpenRead("http://cricketforbundet.no/index.php/en/klubber"), Encoding.UTF8);
+            var root = html.DocumentNode;
+
+            var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1);
+         //   var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1).FirstOrDefault().ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText;
+
+            foreach (var item in p)
+            {
+                foreach (var key in item.ChildNodes.Where(i => i.Name == "td"))
+                {
+                    var s = key.InnerText;
+                }
+            }
+
+            return RedirectToAction("index");
         }
 
 
