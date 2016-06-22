@@ -42,8 +42,8 @@ namespace MScheduler.Controllers
                 int randomGround = rand.Next(0, 6);
 
                 TimeSpan timeSpan = Constants.endDate - Constants.startDate;
-                var randomTest = new Random();
-                TimeSpan newSpan = new TimeSpan(0, randomTest.Next(0, (int)timeSpan.TotalMinutes), 0);
+                var randomDate = new Random();
+                TimeSpan newSpan = new TimeSpan(0, randomDate.Next(0, (int)timeSpan.TotalMinutes), 0);
                 DateTime newDate = Constants.startDate + newSpan;
 
                 TimeSpan time = Constants.allowedTimes.ElementAt(random);
