@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -30,7 +31,11 @@ namespace MScheduler.Helpers
         public static DateTime endDate = new DateTime(2016, 7, 31);
 
         public static int matchesPerTeamOnWeekend = -1; // if -1 then we don't care about this
- 
+
+        public static string ToTitleCase(string str)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
+        }
 
 
 

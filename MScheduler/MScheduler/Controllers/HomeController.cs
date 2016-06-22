@@ -29,8 +29,6 @@ namespace MScheduler.Controllers
 
             List<Match> matches = new List<Match>();
 
-
-
             int totalNumberOfMatchesInElite = (elite.Count() * (elite.Count() - 1));
             int totalNumberOfMatchesInFirst = (first.Count() * (first.Count() - 1));
 
@@ -42,14 +40,9 @@ namespace MScheduler.Controllers
             int count = 0;
 
             Random rand = new Random();
+            Match m;
 
-            int ranTeam;
 
-            string team;
-
-            int ranTeam1;
-
-            string otherTeam;
 
             while (count < totalNumberOfMatches)
             {
@@ -81,90 +74,24 @@ namespace MScheduler.Controllers
 
                     case 0: // elite division
 
-                        // check if all matches have happened 
+                        m = AddMatch("elite", matches, totalNumberOfMatchesInElite, maximumMatchesPerTeamElite, rand, elite, newDate, time, ground);
 
-                        if (matches.Where(i => i.division == "elite").Count() == totalNumberOfMatchesInElite)
+                        if (m == null)
                             continue;
 
-                        ranTeam = rand.Next(0, 3);
-
-                        team = elite.ElementAt(ranTeam);
-
-                        if (matches.Where(i => i.firstTeam == team || i.secondTeam == team).Count() >= maximumMatchesPerTeamElite) // maximum matches per team
-                            continue;
-
-                        ranTeam1 = rand.Next(0, 3);
-
-                        if (ranTeam == ranTeam1)
-                        {
-                            while (ranTeam == ranTeam1)
-                            {
-                                ranTeam1 = rand.Next(0, 3);
-                            }
-                        }
-
-                        otherTeam = elite.ElementAt(ranTeam1);
-
-                        if (matches.Where(i => (i.firstTeam == team && i.secondTeam == otherTeam) || (i.firstTeam == otherTeam && i.secondTeam == team)).Count() == 2) // maximum matches per team
-                            continue;
-
-
-                        matches.Add(new Match
-                        {
-                            firstTeam = team,
-                            secondTeam = otherTeam,
-                            date = newDate,
-                            ground = ground,
-                            day = newDate.DayOfWeek.ToString(),
-                            time = time,
-                            division = "elite"
-                        });
+                        matches.Add(m);
                         count++;
-
 
                         break;
 
                     case 1: // first division
 
+                        m = AddMatch("first", matches, totalNumberOfMatchesInFirst, maximumMatchesPerTeamFirst, rand, first, newDate, time, ground);
 
-                        // check if all matches have happened 
-
-                        if (matches.Where(i => i.division == "first").Count() == totalNumberOfMatchesInFirst)
+                        if (m == null)
                             continue;
 
-                        ranTeam = rand.Next(0, 3);
-
-                        team = first.ElementAt(ranTeam);
-
-                        if (matches.Where(i => i.firstTeam == team || i.secondTeam == team).Count() >= maximumMatchesPerTeamFirst) // maximum matches per team
-                            continue;
-
-                        ranTeam1 = rand.Next(0, 3);
-
-                        if (ranTeam == ranTeam1)
-                        {
-                            while (ranTeam == ranTeam1)
-                            {
-                                ranTeam1 = rand.Next(0, 3);
-                            }
-                        }
-
-                        otherTeam = first.ElementAt(ranTeam1);
-
-                        if (matches.Where(i => (i.firstTeam == team && i.secondTeam == otherTeam) || (i.firstTeam == otherTeam && i.secondTeam == team)).Count() == 2) // maximum matches per team
-                            continue;
-
-
-                        matches.Add(new Match
-                        {
-                            firstTeam = team,
-                            secondTeam = otherTeam,
-                            date = newDate,
-                            ground = ground,
-                            day = newDate.DayOfWeek.ToString(),
-                            time = time,
-                            division = "first"
-                        });
+                        matches.Add(m);
                         count++;
 
                         break;
@@ -176,10 +103,64 @@ namespace MScheduler.Controllers
 
             }
 
-
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.matches = matches.OrderBy(i => i.division);
 
             return View();
+        }
+
+        public Match AddMatch(string division, List<Match> matches, int totalNumberOfMatchesInDivision, int maximumMatchesPerTeamInDivision, Random rand,
+            List<string> divisionList, DateTime matchDate, TimeSpan matchTime, string ground)
+        {
+
+            int ranTeam;
+
+            string team;
+
+            int ranTeam1;
+
+            string otherTeam;
+
+            // check if all matches have happened 
+
+            int matchesInDivision = matches.Where(i => i.division.ToLower() == division.ToLower()).Count();
+
+            if (matchesInDivision == totalNumberOfMatchesInDivision)
+                return null;
+
+            ranTeam = rand.Next(0, 3);
+
+            team = divisionList.ElementAt(ranTeam);
+
+            if (matches.Where(i => i.firstTeam.ToLower() == team.ToLower() || i.secondTeam.ToLower() == team.ToLower()).Count() >= maximumMatchesPerTeamInDivision) // maximum matches per team
+                return null;
+
+            ranTeam1 = rand.Next(0, 3);
+
+            if (ranTeam == ranTeam1)
+            {
+                while (ranTeam == ranTeam1)
+                {
+                    ranTeam1 = rand.Next(0, 3);
+                }
+            }
+
+            otherTeam = divisionList.ElementAt(ranTeam1);
+
+            if (matches.Where(i => (i.firstTeam.ToLower() == team.ToLower() && i.secondTeam.ToLower() == otherTeam.ToLower()) || (i.firstTeam.ToLower() == otherTeam.ToLower() && i.secondTeam.ToLower() == team.ToLower())).Count() == 2) // maximum matches per team
+                return null;
+
+
+            return new Match
+            {
+                firstTeam = Constants.ToTitleCase(team),
+                secondTeam = Constants.ToTitleCase(otherTeam),
+                date = matchDate,
+                ground = Constants.ToTitleCase(ground),
+                day = Constants.ToTitleCase(matchDate.DayOfWeek.ToString()),
+                time = matchTime,
+                division = Constants.ToTitleCase(division)
+            };
+
         }
 
 
