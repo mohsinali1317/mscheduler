@@ -81,3 +81,9 @@ C:\Source\mscheduler\MScheduler\MScheduler\bin\zh-Hant\System.Spatial.resources.
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.csprojResolveAssemblyReference.cache
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.dll
 C:\Source\mscheduler\MScheduler\MScheduler\obj\Release\MScheduler.pdb
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Net.Http.Formatting.dll
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.dll
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.WebHost.dll
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Net.Http.Formatting.xml
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.xml
+C:\Source\mscheduler\MScheduler\MScheduler\bin\System.Web.Http.WebHost.xml
