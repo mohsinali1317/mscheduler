@@ -26,9 +26,9 @@ namespace MScheduler.Helpers
            new TimeSpan(3,15,0)
         };
 
-        public static DateTime startDate = new DateTime(2016,7,1);
+        public static DateTime startDate = new DateTime(2016,5,1);
 
-        public static DateTime endDate = new DateTime(2016, 7, 31);
+        public static DateTime endDate = new DateTime(2016, 9, 30);
 
         public static int matchesPerTeamOnWeekend = -1; // if -1 then we don't care about this
 
@@ -37,6 +37,10 @@ namespace MScheduler.Helpers
         {
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str.ToLower());
         }
+
+        public static List<string> elite = new List<string>();
+
+        public static List<string> first = new List<string>();
 
 
 

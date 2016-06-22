@@ -13,12 +13,12 @@ namespace MScheduler.Controllers
 {
     public class HomeController : Controller
     {
-        public List<string> elite = new List<string>();
 
-        public List<string> first = new List<string>();
 
         public ActionResult Index()
         {
+            List<string> elite = Constants.elite;
+            List<string> first = Constants.first;
 
             List<Match> matches = new List<Match>();
 
@@ -95,13 +95,17 @@ namespace MScheduler.Controllers
 
             ViewBag.matches = matches.OrderBy(i => i.division);
 
-         /*   List<string> Eliteserie = new List<string>();
-            List<string> FirstDivision = new List<string>();
-            List<string> SecondDivision = new List<string>();
-            List<string> ThirdDivision = new List<string>();
-            List<string> FourthDivision = new List<string>();
-            List<string> FifthDivision = new List<string>();
-*/
+            /*   List<string> Eliteserie = new List<string>();
+               List<string> FirstDivision = new List<string>();
+               List<string> SecondDivision = new List<string>();
+               List<string> ThirdDivision = new List<string>();
+               List<string> FourthDivision = new List<string>();
+               List<string> FifthDivision = new List<string>();
+   */
+
+            return View();
+
+        }
 
 
 
@@ -124,20 +128,20 @@ namespace MScheduler.Controllers
             if (matchesInDivision == totalNumberOfMatchesInDivision)
                 return null;
 
-            ranTeam = rand.Next(0, 3);
+            ranTeam = rand.Next(0, divisionList.Count);
 
             team = divisionList.ElementAt(ranTeam);
 
             if (matches.Where(i => i.firstTeam.ToLower() == team.ToLower() || i.secondTeam.ToLower() == team.ToLower()).Count() >= maximumMatchesPerTeamInDivision) // maximum matches per team
                 return null;
 
-            ranTeam1 = rand.Next(0, 3);
+            ranTeam1 = rand.Next(0, divisionList.Count);
 
             if (ranTeam == ranTeam1)
             {
                 while (ranTeam == ranTeam1)
                 {
-                    ranTeam1 = rand.Next(0, 3);
+                    ranTeam1 = rand.Next(0, divisionList.Count);
                 }
             }
 
@@ -162,62 +166,49 @@ namespace MScheduler.Controllers
 
         public ActionResult Setup()
         {
-			/*
+
+            Constants.elite.Clear();
+            Constants.first.Clear();
+
             WebClient webClient = new WebClient();
             HtmlDocument html = new HtmlDocument();
             html.Load(webClient.OpenRead("http://cricketforbundet.no/index.php/en/klubber"), Encoding.UTF8);
             var root = html.DocumentNode;
 
-            // Creates an HtmlDocument object from an URL
-            var html = new HtmlDocument();
 
-            Uri u = new Uri("http://cricketforbundet.no/index.php/en/klubber");
-
-            html.LoadHtml(new WebClient().DownloadString(u));
-
-            var root = html.DocumentNode;
             var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1);
 
             foreach (var item in p)
             {
-                Eliteserie.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
-                FirstDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
-                SecondDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(2).InnerText);
-                ThirdDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(3).InnerText);
+                Constants.elite.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
+                Constants.first.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
+                //SecondDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(2).InnerText);
+                //ThirdDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(3).InnerText);
             }
 
-            var p1 = root.Descendants("table").ElementAt(1).Descendants("tr").Skip(2);
+            //var p1 = root.Descendants("table").ElementAt(1).Descendants("tr").Skip(2);
 
-            foreach (var item in p1)
-            {
-                FourthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
-                FifthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
-            }
+            //foreach (var item in p1)
+            //{
+            //    FourthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
+            //    FifthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
+            //}
 
-            List<dynamic> teams = new List<dynamic>();
-            teams.Add(Eliteserie);
-            teams.Add(FirstDivision);
-            teams.Add(SecondDivision);
-            teams.Add(ThirdDivision);
-            teams.Add(FourthDivision);
-            teams.Add(FifthDivision);
+            //List<dynamic> teams = new List<dynamic>();
+            //teams.Add(Eliteserie);
+            //teams.Add(FirstDivision);
+            //teams.Add(SecondDivision);
+            //teams.Add(ThirdDivision);
+            //teams.Add(FourthDivision);
+            //teams.Add(FifthDivision);
 
-            ViewBag.teams = teams;
+            //ViewBag.teams = teams;
 
 
-            var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1);
-         //   var p = root.Descendants("table").FirstOrDefault().Descendants("tr").Skip(1).FirstOrDefault().ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText;
 
-            foreach (var item in p)
-            {
-                foreach (var key in item.ChildNodes.Where(i => i.Name == "td"))
-                {
-                    var s = key.InnerText;
-                }
-            }*/
 
             return RedirectToAction("index");
-			
+
         }
 
 
