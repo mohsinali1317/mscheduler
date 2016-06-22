@@ -42,6 +42,11 @@ namespace MScheduler.Helpers
 
         public static List<string> first = new List<string>();
 
+        public static List<string> second = new List<string>();
+
+        public static List<string> third = new List<string>();
+
+
 
 
     }

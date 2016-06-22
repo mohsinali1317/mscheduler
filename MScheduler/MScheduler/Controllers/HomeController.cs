@@ -19,16 +19,22 @@ namespace MScheduler.Controllers
         {
             List<string> elite = Constants.elite;
             List<string> first = Constants.first;
+            List<string> second = Constants.second;
+            List<string> third = Constants.third;
 
             List<Match> matches = new List<Match>();
 
             int totalNumberOfMatchesInElite = (elite.Count() * (elite.Count() - 1));
             int totalNumberOfMatchesInFirst = (first.Count() * (first.Count() - 1));
+            int totalNumberOfMatchesInSecond = (second.Count() * (second.Count() - 1));
+            int totalNumberOfMatchesInThird = (third.Count() * (third.Count() - 1));
 
-            int totalNumberOfMatches = totalNumberOfMatchesInElite + totalNumberOfMatchesInFirst;
+            int totalNumberOfMatches = totalNumberOfMatchesInElite + totalNumberOfMatchesInFirst +  totalNumberOfMatchesInSecond + totalNumberOfMatchesInThird;
 
             int maximumMatchesPerTeamElite = (elite.Count() - 1) * 2;
             int maximumMatchesPerTeamFirst = (first.Count() - 1) * 2;
+            int maximumMatchesPerTeamSecond = (second.Count() - 1) * 2;
+            int maximumMatchesPerTeamThird = (third.Count() - 1) * 2;
 
             int count = 0;
 
@@ -37,7 +43,8 @@ namespace MScheduler.Controllers
 
             while (count < totalNumberOfMatches)
             {
-                int random = rand.Next(0, 2);
+                int randomForTime = rand.Next(0, 2);
+                int randomForTeam = rand.Next(0, 4);
 
                 int randomGround = rand.Next(0, 6);
 
@@ -46,7 +53,7 @@ namespace MScheduler.Controllers
                 TimeSpan newSpan = new TimeSpan(0, randomDate.Next(0, (int)timeSpan.TotalMinutes), 0);
                 DateTime newDate = Constants.startDate + newSpan;
 
-                TimeSpan time = Constants.allowedTimes.ElementAt(random);
+                TimeSpan time = Constants.allowedTimes.ElementAt(randomForTime);
 
                 if (newDate.DayOfWeek.ToString().ToLower() != "saturday" && newDate.DayOfWeek.ToString().ToLower() != "sunday")
                     continue;
@@ -58,7 +65,7 @@ namespace MScheduler.Controllers
                 if (matches.Where(i => i.ground.ToLower() == ground && i.date.Date == newDate.Date && TimeSpan.Compare(i.time,time) == 0).Count() > 0)
                     continue;
 
-                switch (random)
+                switch (randomForTeam)
                 {
 
                     case 0: // elite division
@@ -85,6 +92,30 @@ namespace MScheduler.Controllers
 
                         break;
 
+                    case 2: // second division
+
+                        m = AddMatch("second", matches, totalNumberOfMatchesInSecond, maximumMatchesPerTeamSecond, rand, second, newDate, time, ground);
+
+                        if (m == null)
+                            continue;
+
+                        matches.Add(m);
+                        count++;
+
+                        break;
+
+                    case 3: // third division
+
+                        m = AddMatch("third", matches, totalNumberOfMatchesInThird, maximumMatchesPerTeamThird, rand, third, newDate, time, ground);
+
+                        if (m == null)
+                            continue;
+
+                        matches.Add(m);
+                        count++;
+
+                        break;
+
                     default:
                         break;
 
@@ -95,6 +126,8 @@ namespace MScheduler.Controllers
 
             ViewBag.elite = matches.Where(i => i.division.ToLower() == "elite").OrderBy(i=>i.date);
             ViewBag.first = matches.Where(i => i.division.ToLower() == "first").OrderBy(i => i.date);
+            ViewBag.second = matches.Where(i => i.division.ToLower() == "second").OrderBy(i => i.date);
+            ViewBag.third = matches.Where(i => i.division.ToLower() == "third").OrderBy(i => i.date);
 
             return View();
 
@@ -187,8 +220,8 @@ namespace MScheduler.Controllers
             {
                 Constants.elite.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
                 Constants.first.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
-                //SecondDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(2).InnerText);
-                //ThirdDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(3).InnerText);
+                Constants.second.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(2).InnerText);
+                Constants.third.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(3).InnerText);
             }
 
             //var p1 = root.Descendants("table").ElementAt(1).Descendants("tr").Skip(2);
