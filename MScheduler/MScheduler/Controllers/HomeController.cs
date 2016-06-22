@@ -94,20 +94,9 @@ namespace MScheduler.Controllers
             }
 
             ViewBag.matches = matches.OrderBy(i => i.division);
-
-            /*   List<string> Eliteserie = new List<string>();
-               List<string> FirstDivision = new List<string>();
-               List<string> SecondDivision = new List<string>();
-               List<string> ThirdDivision = new List<string>();
-               List<string> FourthDivision = new List<string>();
-               List<string> FifthDivision = new List<string>();
-   */
-
             return View();
 
         }
-
-
 
         public Match AddMatch(string division, List<Match> matches, int totalNumberOfMatchesInDivision, int maximumMatchesPerTeamInDivision, Random rand,
             List<string> divisionList, DateTime matchDate, TimeSpan matchTime, string ground)
@@ -125,14 +114,16 @@ namespace MScheduler.Controllers
 
             int matchesInDivision = matches.Where(i => i.division.ToLower() == division.ToLower()).Count();
 
-            if (matchesInDivision == totalNumberOfMatchesInDivision)
+            if (matchesInDivision == totalNumberOfMatchesInDivision) 
                 return null;
 
             ranTeam = rand.Next(0, divisionList.Count);
 
             team = divisionList.ElementAt(ranTeam);
 
-            if (matches.Where(i => i.firstTeam.ToLower() == team.ToLower() || i.secondTeam.ToLower() == team.ToLower()).Count() >= maximumMatchesPerTeamInDivision) // maximum matches per team
+            // check if the team has assigned maximum matches
+
+            if (matches.Where(i => i.firstTeam.ToLower() == team.ToLower() || i.secondTeam.ToLower() == team.ToLower()).Count() >= maximumMatchesPerTeamInDivision)
                 return null;
 
             ranTeam1 = rand.Next(0, divisionList.Count);
@@ -147,7 +138,19 @@ namespace MScheduler.Controllers
 
             otherTeam = divisionList.ElementAt(ranTeam1);
 
-            if (matches.Where(i => (i.firstTeam.ToLower() == team.ToLower() && i.secondTeam.ToLower() == otherTeam.ToLower()) || (i.firstTeam.ToLower() == otherTeam.ToLower() && i.secondTeam.ToLower() == team.ToLower())).Count() == 2) // maximum matches per team
+            // check if team A has a match at same time and date already
+
+            if (matches.Where(i => ((i.firstTeam.ToLower() == team.ToLower() || i.secondTeam.ToLower() == team.ToLower()) && i.date == matchDate && i.time == matchTime)).Count() > 0)
+                return null;
+
+            // check if team B has a match at same time and date already
+
+            if (matches.Where(i => ((i.firstTeam.ToLower() == otherTeam.ToLower() || i.secondTeam.ToLower() == otherTeam.ToLower()) && i.date == matchDate && i.time == matchTime)).Count() > 0)
+                return null;
+
+            // check if team A has played two matches with team B already
+
+            if (matches.Where(i => (i.firstTeam.ToLower() == team.ToLower() && i.secondTeam.ToLower() == otherTeam.ToLower()) || (i.firstTeam.ToLower() == otherTeam.ToLower() && i.secondTeam.ToLower() == team.ToLower())).Count() == 2) 
                 return null;
 
 
@@ -193,19 +196,6 @@ namespace MScheduler.Controllers
             //    FourthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").FirstOrDefault().InnerText);
             //    FifthDivision.Add(item.ChildNodes.Where(i => i.Name == "td").ElementAt(1).InnerText);
             //}
-
-            //List<dynamic> teams = new List<dynamic>();
-            //teams.Add(Eliteserie);
-            //teams.Add(FirstDivision);
-            //teams.Add(SecondDivision);
-            //teams.Add(ThirdDivision);
-            //teams.Add(FourthDivision);
-            //teams.Add(FifthDivision);
-
-            //ViewBag.teams = teams;
-
-
-
 
             return RedirectToAction("index");
 
