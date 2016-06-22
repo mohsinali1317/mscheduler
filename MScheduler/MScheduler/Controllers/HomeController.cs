@@ -53,10 +53,9 @@ namespace MScheduler.Controllers
 
                 String ground = Constants.grounds.ElementAt(randomGround).ToLower();
 
-                if (matches.Where(i => i.ground.ToLower() == ground && i.date == newDate).Count() > 0)
-                    continue;
+                // check if the ground is occupied at the same date and time
 
-                if (matches.Where(i => i.ground.ToLower() == ground && i.date == newDate && i.time == time).Count() > 0)
+                if (matches.Where(i => i.ground.ToLower() == ground && i.date.Date == newDate.Date && TimeSpan.Compare(i.time,time) == 0).Count() > 0)
                     continue;
 
                 switch (random)
@@ -93,7 +92,10 @@ namespace MScheduler.Controllers
 
             }
 
-            ViewBag.matches = matches.OrderBy(i => i.division);
+
+            ViewBag.elite = matches.Where(i => i.division.ToLower() == "elite").OrderBy(i=>i.date);
+            ViewBag.first = matches.Where(i => i.division.ToLower() == "first").OrderBy(i => i.date);
+
             return View();
 
         }

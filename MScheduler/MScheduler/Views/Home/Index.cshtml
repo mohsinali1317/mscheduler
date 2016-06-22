@@ -3,30 +3,78 @@
     ViewBag.Title = "Matches";
 }
 
-<table class="matches">
-    <thead>
-        <tr>
-            <th>Division</th>
-            <th>First Team</th>
-            <th>Second Team</th>
-            <th>Ground</th>
-            <th>Day</th>
-            <th>Date</th>
-            <th>Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (Match m in ViewBag.matches)
-        {
-            <tr>
-                <td>@m.division</td>
-                <td>@m.firstTeam</td>
-                <td>@m.secondTeam</td>
-                <td>@m.ground</td>
-                <td>@m.day</td>
-                <td>@m.date.ToShortDateString()</td>
-                <td>@m.time</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">
+
+    <div class="medium-12 columns">
+
+
+
+        <ul class="accordion" data-accordion>
+
+            <li class="accordion-navigation">
+                <a href="#panel1a">Elite Division total matches (@Enumerable.Count(ViewBag.elite))</a>
+                <table id="panel1a" class="content active">
+                    <thead>
+                        <tr>
+                            <th>Division</th>
+                            <th>First Team</th>
+                            <th>Second Team</th>
+                            <th>Ground</th>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Match m in ViewBag.elite)
+                        {
+                            <tr>
+                                <td>@m.division</td>
+                                <td>@m.firstTeam</td>
+                                <td>@m.secondTeam</td>
+                                <td>@m.ground</td>
+                                <td>@m.day</td>
+                                <td>@m.date.ToShortDateString()</td>
+                                <td>@m.time</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </li>
+
+            <li class="accordion-navigation">
+                <a href="#panel2a">First Division total matches (@Enumerable.Count(ViewBag.first))</a>
+                <table id="panel2a" class="content">
+                    <thead>
+                        <tr>
+                            <th>Division</th>
+                            <th>First Team</th>
+                            <th>Second Team</th>
+                            <th>Ground</th>
+                            <th>Day</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Match m in ViewBag.first)
+                        {
+                            <tr>
+                                <td>@m.division</td>
+                                <td>@m.firstTeam</td>
+                                <td>@m.secondTeam</td>
+                                <td>@m.ground</td>
+                                <td>@m.day</td>
+                                <td>@m.date.ToShortDateString()</td>
+                                <td>@m.time</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </li>
+
+        </ul>
+    </div>
+
+</div>
+
